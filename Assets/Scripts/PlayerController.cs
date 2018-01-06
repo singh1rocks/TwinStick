@@ -13,12 +13,19 @@ public class PlayerController : MonoBehaviour {
     private Camera mainCamera;
 
     public GunController theGun;
+    public GameObject BasicGun;
     public GameObject Juggernaut;
+    public GameObject machineGun;
+    public GameObject shotgun;
+    public GameObject sniper;
+    public GameObject currentGun;
 
 	// Use this for initialization
 	void Start () {
         myRigidbody = GetComponent<Rigidbody>();
         mainCamera = FindObjectOfType<Camera>();
+        currentGun = BasicGun;
+        currentGun.SetActive(true);
 	}
 	
 	// Update is called once per frame
@@ -39,12 +46,12 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
-            theGun.isFiring = true;
+            currentGun.GetComponent<GunController>().isFiring = true;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            theGun.isFiring = false;
+            currentGun.GetComponent<GunController>().isFiring = false;
         }
 	}
 
@@ -56,17 +63,25 @@ public class PlayerController : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Weapon 1")) {
             other.gameObject.SetActive(false);
-            Destroy(gameObject);
-            Instantiate(Juggernaut, transform.position, transform.rotation);
+            currentGun.SetActive(false);
+            currentGun = Juggernaut;
+            currentGun.SetActive(true);
         } else if (other.gameObject.CompareTag("Weapon 2"))
         {
             other.gameObject.SetActive(false);
+            currentGun.SetActive(false);
+            currentGun = machineGun;
+            currentGun.SetActive(true);
         } else if (other.gameObject.CompareTag("Weapon 3"))
         {
             other.gameObject.SetActive(false);
+            currentGun = sniper;
+            currentGun.SetActive(true);
         } else if (other.gameObject.CompareTag("Weapon 4"))
         {
             other.gameObject.SetActive(false);
+            currentGun = shotgun;
+            currentGun.SetActive(true);
         }
     }
 }
