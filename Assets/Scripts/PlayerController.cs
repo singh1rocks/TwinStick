@@ -75,11 +75,13 @@ public class PlayerController : MonoBehaviour {
         } else if (other.gameObject.CompareTag("Weapon 3"))
         {
             other.gameObject.SetActive(false);
+            currentGun.SetActive(false);
             currentGun = sniper;
             currentGun.SetActive(true);
         } else if (other.gameObject.CompareTag("Weapon 4"))
         {
             other.gameObject.SetActive(false);
+            currentGun.SetActive(false);
             currentGun = shotgun;
             currentGun.SetActive(true);
         }

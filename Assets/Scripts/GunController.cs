@@ -13,6 +13,8 @@ public class GunController : MonoBehaviour {
     private float shotCounter;
 
     public Transform firePoint;
+    public Transform firePoint2;
+    public Transform firePoint3;
     private float nextFire;
 
 	// Use this for initialization
@@ -26,6 +28,8 @@ public class GunController : MonoBehaviour {
         {
             nextFire = Time.time + timeBetweenShots;
             Instantiate(bullet, firePoint.position, firePoint.rotation);
+            Instantiate(bullet, firePoint2.position, firePoint2.rotation);
+            Instantiate(bullet, firePoint3.position, firePoint3.rotation);
         }
 		
 	}
